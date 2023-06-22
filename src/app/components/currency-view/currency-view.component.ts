@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, distinctUntilChanged, filter, takeUntil } from 'rxjs';
 import { CurrencyHelperService } from 'src/app/services/currency-helper.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -8,7 +8,7 @@ import { HttpService } from 'src/app/services/http.service';
   templateUrl: './currency-view.component.html',
   styleUrls: ['./currency-view.component.scss']
 })
-export class CurrencyViewComponent implements OnInit {
+export class CurrencyViewComponent implements OnInit, OnDestroy {
 
   constructor(private http: HttpService, 
               public helper: CurrencyHelperService) {
@@ -73,5 +73,10 @@ export class CurrencyViewComponent implements OnInit {
 
   secondSelectChanged(): void {
     this.calculateSecondValue();
+  }
+
+  ngOnDestroy(): void {
+    this.completion$.next(null);
+    this.completion$.complete();
   }
 }
