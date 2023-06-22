@@ -1,0 +1,22 @@
+@import '../../styles/variables.scss';
+
+.header {
+    height: 80px;
+    background-color: $background-color;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    .usdShow {
+        margin: 15px;
+        color: whitesmoke;
+    }
+
+    .eurShow {
+        margin: 15px;
+        color: whitesmoke;
+    }
+}
